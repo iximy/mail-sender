@@ -1,5 +1,5 @@
 <?php
-//update version 46
+//update version 47
 function smtpmail($mail_to, $subject, $message, $headers='') {
 
         
@@ -41,7 +41,6 @@ function smtpmail($mail_to, $subject, $message, $headers='') {
                fclose($socket);
                return false;
             }
-			
             fputs($socket, "AUTH LOGIN\r\n");
 			
             if (!server_parse($socket, "334", __LINE__)) {
@@ -55,7 +54,6 @@ function smtpmail($mail_to, $subject, $message, $headers='') {
                fclose($socket);
                return false;
             }
-			
             fputs($socket, base64_encode($config['smtp_password']) . "\r\n");
             if (!server_parse($socket, "235", __LINE__)) {
                if ($config['smtp_debug']) echo '<p>Пароль не был принят сервером как верный! Ошибка авторизации!</p>';
